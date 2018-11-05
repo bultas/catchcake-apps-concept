@@ -3,7 +3,7 @@ const resolve = require("rollup-plugin-node-resolve");
 const commonjs = require("rollup-plugin-commonjs");
 const replace = require("rollup-plugin-replace");
 
-const inputOptions = {
+const serverInputOptions = {
   input: "./server.js",
   plugins: [
     commonjs(),
@@ -12,17 +12,19 @@ const inputOptions = {
         moduleDirectory: "node_modules"
       }
     })
-  ]
+  ],
+  inlineDynamicImports: false
 };
 
-const outputOptions = {
+const serverOutputOptions = {
   file: "dist/app.js",
   format: "cjs",
   name: "app"
 };
 
 const browserInputOptions = {
-  input: "./browser.js",
+  input: ["./browser.js"],
+  // input: "./browser.js",
   plugins: [
     replace({
       "process.env.NODE_ENV": JSON.stringify("production")
@@ -33,19 +35,22 @@ const browserInputOptions = {
         moduleDirectory: "node_modules"
       }
     })
-  ]
+  ],
+  experimentalCodeSplitting: true
 };
 
 const browserOutputOptions = {
-  file: "dist/app-browser.js",
-  format: "iife"
+  // file: "dist/browser.js",
+  dir: "dist",
+  format: "es",
+  sourcemap: true
 };
 
 async function build() {
-  const serverBundle = await rollup.rollup(inputOptions);
+  const serverBundle = await rollup.rollup(serverInputOptions);
   const browserBundle = await rollup.rollup(browserInputOptions);
 
-  await serverBundle.write(outputOptions);
+  await serverBundle.write(serverOutputOptions);
   await browserBundle.write(browserOutputOptions);
 }
 
