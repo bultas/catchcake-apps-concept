@@ -13,7 +13,8 @@ const serverInputOptions = {
       }
     })
   ],
-  inlineDynamicImports: false
+  inlineDynamicImports: false,
+  experimentalCodeSplitting: false
 };
 
 const serverOutputOptions = {
@@ -27,7 +28,7 @@ const browserInputOptions = {
   // input: "./browser.js",
   plugins: [
     replace({
-      "process.env.NODE_ENV": JSON.stringify("production")
+      "process.env.NODE_ENV": JSON.stringify("development")
     }),
     commonjs(),
     resolve({
@@ -42,7 +43,7 @@ const browserInputOptions = {
 const browserOutputOptions = {
   // file: "dist/browser.js",
   dir: "dist",
-  format: "es",
+  format: "esm",
   sourcemap: true
 };
 

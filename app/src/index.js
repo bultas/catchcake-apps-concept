@@ -1,23 +1,13 @@
 import React from "react";
 
-const getComponent = async () => {
-  const { Component } = await import("./component.js");
-  return Component;
+export const createAppElement = async ({ data, path }) => {
+  if (path === "/simple") {
+    return import(`./simple.js`).then(({ Simple }) => {
+      return React.createElement(Simple, { data, path });
+    });
+  }
+
+  return import(`./component.js`).then(({ Component }) => {
+    return React.createElement(Component, { data, path });
+  });
 };
-
-export const App = async ({ data: { name }, path }) => {
-  const Component = await getComponent();
-  console.log(Component);
-
-  return React.createElement(Component, { name, path });
-};
-
-// export const dynamic = async () => {
-//   const Component = await import("./component.js");
-//   return Component;
-// };
-
-// export const dynamic = async () => {
-//   const { Component } = await import("./component.js");
-//   return Component;
-// };

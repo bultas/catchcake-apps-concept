@@ -3,20 +3,24 @@
 
 // import { App } from "./src/index.js";
 
-// const { data, path } = window.data;
-// const appID = "app";
+// const dataObject = window.data;
 
-// ReactDOM.hydrate(
-//   React.createElement(App, { data, path }),
-//   document.querySelector(`#${appID}`)
-// );
+// const getResult = async data => {
+//   const result = await render(data);
+//   return result;
+// };
 
-import { getAsyncNeco } from "./src/async.js";
+// render(data).then(Elem => {
+//   ReactDOM.hydrate(Elem, document.querySelector(`#app`));
+// });
 
-const app = async () => {
-  return getAsyncNeco();
+// ReactDOM.hydrate(render(dataObject), document.querySelector(`#app`));
+
+import ReactDOM from "react-dom";
+
+import { createAppElement } from "./src/index.js";
+
+export default async data => {
+  const AppElement = await createAppElement(data);
+  ReactDOM.hydrate(AppElement, document.querySelector(`#app`));
 };
-
-app().then(result => {
-  console.log(result);
-});

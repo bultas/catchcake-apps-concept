@@ -3,12 +3,13 @@
 
 // import { App } from "./src/index.js";
 
-// export default async dataObject => {
+// const app = async dataObject => {
 //   const template = markup => `
-//       <div id="app">${markup}</div>
 //       <script>
 //         window.data = ${JSON.stringify(dataObject)}
 //       </script>
+//       <div id="app">${markup}</div>
+//       <script src="browser.js"></script>
 //   `;
 
 //   const markup = ReactDOMServer.renderToString(
@@ -18,29 +19,24 @@
 //   return template(markup);
 // };
 
-import { getAsyncNeco } from "./src/async.js";
+// export default app;
+
+import ReactDOMServer from "react-dom/server";
+
+import { createAppElement } from "./src/index.js";
 
 const app = async dataObject => {
   const template = markup => `
       <div id="app">${markup}</div>
-      <script src="browser.js"></script>
-      <script>
-        window.data = ${JSON.stringify(dataObject)}
+      <script type="module">
+        import hydrate from './browser.js';
+        hydrate(${JSON.stringify(dataObject)});
       </script>
   `;
-  const markup = await getAsyncNeco();
+
+  const result = await createAppElement(dataObject);
+  const markup = ReactDOMServer.renderToString(result);
   return template(markup);
 };
 
 export default app;
-
-// export default () => {
-//   return `<script src="browser.js"></script>`;
-// };
-
-// const app = async () => {
-//   const { getAsyncNeco } = await import("./src/async.js");
-//   const result = await getAsyncNeco();
-//   return result;
-// };
-// export default app;
