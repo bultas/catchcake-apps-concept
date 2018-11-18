@@ -2,7 +2,7 @@ const express = require("express");
 const exec = require("child_process").exec;
 const app = express();
 
-const appPath = "../apps/html-template/src/";
+const appPath = "../apps/litHTML";
 
 app.use(express.static(appPath));
 
