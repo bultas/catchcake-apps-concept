@@ -1,21 +1,26 @@
 const express = require("express");
-
-const renderer = require("../renderer/renderer.js");
-
+const exec = require("child_process").exec;
 const app = express();
 
-app.use(express.static("../app/dist"));
+const appPath = "../apps/html-template/src/";
 
-const data = {
-  name: "App name",
-  db: {}
-};
+app.use(express.static(appPath));
 
-const appPath = "../app/dist/app.js";
+app.get("*", async (req, res, next) => {
+  const rendererPath = "../renderer/renderer.js";
+  const appIndexPath = `${appPath}/index.js`;
 
-app.get("*", (req, res, next) => {
   const path = req.originalUrl;
-  res.send(renderer({ appPath, data, path }));
+  const data = { data: { name: "Pinocchio", content: "lorem impsun" }, path };
+
+  const serializedData = JSON.stringify(data);
+
+  const command = `node ${rendererPath} '${appIndexPath}' '${serializedData}'`;
+
+  exec(command, function(error, stdout, stderr) {
+    const result = stderr || stdout;
+    res.send(result);
+  });
 });
 
 app.listen(3000, () => {
