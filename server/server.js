@@ -2,18 +2,20 @@ const express = require("express");
 const exec = require("child_process").exec;
 const app = express();
 
-app.use(express.static("../app/dist"));
+const appPath = "../apps/html-template/src/";
+
+app.use(express.static(appPath));
 
 app.get("*", async (req, res, next) => {
   const rendererPath = "../renderer/renderer.js";
-  const appPath = "../app/dist/app.js";
+  const appIndexPath = `${appPath}/index.js`;
 
   const path = req.originalUrl;
-  const data = { data: { name: "Dan" }, path };
+  const data = { data: { name: "Pinocchio", content: "lorem impsun" }, path };
 
   const serializedData = JSON.stringify(data);
 
-  const command = `node ${rendererPath} '${appPath}' '${serializedData}'`;
+  const command = `node ${rendererPath} '${appIndexPath}' '${serializedData}'`;
 
   exec(command, function(error, stdout, stderr) {
     const result = stderr || stdout;

@@ -1,6 +1,8 @@
 const appPath = process.argv[2];
 const dataString = process.argv[3];
 
+require = require("esm")(module /*, options*/);
+
 const getRenderOutput = async (appPath, data) => {
   const render = require(appPath);
   const result = await render(data);

@@ -1,24 +1,15 @@
 const rollup = require("rollup");
 const resolve = require("rollup-plugin-node-resolve");
-const commonjs = require("rollup-plugin-commonjs");
-const replace = require("rollup-plugin-replace");
+// const commonjs = require("rollup-plugin-commonjs");
+// const replace = require("rollup-plugin-replace");
 
 const serverInputOptions = {
-  input: "./server.js",
-  plugins: [
-    commonjs(),
-    resolve({
-      customResolveOptions: {
-        moduleDirectory: "node_modules"
-      }
-    })
-  ],
-  inlineDynamicImports: false,
-  experimentalCodeSplitting: false
+  input: "./index.js"
+  // plugins: [commonjs()] // Because of React dependencies
 };
 
 const serverOutputOptions = {
-  file: "dist/app.js",
+  file: "dist/index.js",
   format: "cjs",
   name: "app"
 };
@@ -27,10 +18,10 @@ const browserInputOptions = {
   input: ["./browser.js"],
   // input: "./browser.js",
   plugins: [
-    replace({
-      "process.env.NODE_ENV": JSON.stringify("development")
-    }),
-    commonjs(),
+    // replace({
+    //   "process.env.NODE_ENV": JSON.stringify("development")
+    // }),
+    // commonjs(),
     resolve({
       customResolveOptions: {
         moduleDirectory: "node_modules"

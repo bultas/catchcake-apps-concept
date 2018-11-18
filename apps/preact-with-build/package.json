@@ -10,12 +10,16 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.1.0",
+    "babel": "^6.23.0",
     "rollup": "^0.67.0",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-replace": "^2.1.0"
   },
   "dependencies": {
+    "preact": "^8.3.1",
+    "preact-render-to-string": "^4.1.0",
     "react": "^16.6.0",
     "react-dom": "^16.6.0"
   }

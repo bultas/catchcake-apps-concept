@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@popeindustries/lit-html-server": "^0.13.0"
+  }
+}

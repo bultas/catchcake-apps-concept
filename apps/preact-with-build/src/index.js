@@ -1,13 +1,14 @@
-import React from "react";
+// import React from "react";
+import { h } from "preact";
 
 export const createAppElement = async ({ data, path }) => {
   if (path === "/simple") {
     return import(`./simple.js`).then(({ Simple }) => {
-      return React.createElement(Simple, { data, path });
+      return h(Simple, { data, path });
     });
   }
 
   return import(`./component.js`).then(({ Component }) => {
-    return React.createElement(Component, { data, path });
+    return h(Component, { data, path });
   });
 };

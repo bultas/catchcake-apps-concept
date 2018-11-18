@@ -1,4 +1,5 @@
-import React from "react";
+// import React from "react";
+import { h } from "preact";
 
 const onClick = async () => {
   const { getAsyncNeco } = await import("./async.js");
@@ -7,5 +8,5 @@ const onClick = async () => {
 };
 
 export const Simple = ({ data: { name } }) => {
-  return React.createElement("button", { onClick }, `Hello ${name}`);
+  return h("button", { onClick }, `Hello ${name}`);
 };
