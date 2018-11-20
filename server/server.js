@@ -2,8 +2,8 @@ const express = require("express");
 const exec = require("child_process").exec;
 const app = express();
 
-const appPath = "../apps/litHTML";
-
+// TODO use package.json main to load index, but we have problem with serverStatic..
+const appPath = "../apps/litHTML/src";
 app.use(express.static(appPath));
 
 app.get("*", async (req, res, next) => {
