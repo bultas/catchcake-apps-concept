@@ -1,6 +1,8 @@
 {
   "main": "src/index.js",
   "dependencies": {
-    "@popeindustries/lit-html-server": "^0.13.0"
+    "@popeindustries/lit-html-server": "^0.13.0",
+    "lit-html": "^0.13.0",
+    "xstate": "^4.1.2"
   }
 }

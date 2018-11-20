@@ -5,7 +5,7 @@ export class CCElement extends HTMLElement {
     this.addEventListener("click", async e => {
       // example of dynamic import with relative path
       const modulePath = "/utils/sayHi.js";
-      const { hi } = await import("/utils/sayHi.js");
+      const { hi } = await import("/modules/sayHi.js");
       hi(this.getAttribute("value"));
     });
   }

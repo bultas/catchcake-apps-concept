@@ -13,6 +13,5 @@ input {
 }
 
 cc-button {
-    padding: 0;
-    background: red;
+    /* background: red; */
 }

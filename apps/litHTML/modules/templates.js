@@ -1,5 +1,3 @@
-// import { render } from "./elements/my-element.js";
-
 const createLogEvent = type => e => console.log(type, e);
 
 // export const headline = (r, { name }) => r`
@@ -21,7 +19,7 @@ const createLogEvent = type => e => console.log(type, e);
 //     })}
 //   `;
 
-export const createAppTemplateResult = (html, data) => html`
+export const createAppTemplateResult = (html, { data, path }) => html`
   <h1>${data.name}</h1>
   <p>${data.content}</p>
 
