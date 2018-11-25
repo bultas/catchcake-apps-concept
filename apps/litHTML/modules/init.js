@@ -1,15 +1,24 @@
-import { html, render } from "/node_modules/lit-html/lit-html.js";
-import { register } from "/modules/register.js";
-import { createAppTemplateResult } from "/modules/templates.js";
+import { DOMService } from "/modules/machines.js";
 
-const initialState = window.initialState;
+DOMService.onTransition(nextState => {
+  console.log(nextState.value);
+});
 
-render(
-  createAppTemplateResult(html, initialState),
-  document.getElementById("app")
-);
+DOMService.start();
 
-// wait for full DOM hydratation to allow CSS custom-elements transitions etc.
+DOMService.send({ type: "INIT", payload: window.initialState });
+
 setTimeout(() => {
-  register();
-}, 0);
+  DOMService.send({
+    type: "UPDATE",
+    payload: {
+      data: {
+        name: "X machina",
+        content: "super cooler lorem psum"
+      },
+      path: "/"
+    }
+  });
+}, 1000);
+
+// DOMService.stop();
