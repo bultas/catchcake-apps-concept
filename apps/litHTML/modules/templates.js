@@ -19,13 +19,15 @@ const createLogEvent = type => e => console.log(type, e);
 //     })}
 //   `;
 
-export const createAppTemplateResult = (html, { data, path }) => html`
+export const createAppTemplateResult = (html, data) => html`
   <h1>${data.name}</h1>
   <p>${data.content}</p>
 
-  <input type="text" value="${data.name}" @input="${createLogEvent("input")}" />
+  <cc-input is="input" value="${data.name}"></cc-input>
 
-  <cc-button @click="${createLogEvent("click")}"> Click Me </cc-button>
+  <cc-input is="input" value="${data.name}"></cc-input>
+
+  <cc-button value="SAVE_BUTTON_CLICKED">Click Me</cc-button>
 
   <my-element></my-element>
 `;

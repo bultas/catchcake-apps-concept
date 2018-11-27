@@ -1,7 +1,4 @@
-import {
-  Machine,
-  actions as xactions
-} from "https://unpkg.com/xstate/es/index.js";
+import { Machine } from "https://unpkg.com/xstate/es/index.js";
 
 export const DOMMachine = Machine({
   id: "DOM",

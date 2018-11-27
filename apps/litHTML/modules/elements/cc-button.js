@@ -37,5 +37,8 @@ export class CCElement extends HTMLElement {
     // button.textContent = this.childNodes[0].textContent;
 
     shadow.appendChild(this.childNodes[0]);
+
+    // const event = new CustomEvent("hello-event", {});
+    // this.addEventListener("click", e => {});
   }
 }

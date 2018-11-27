@@ -3,47 +3,61 @@ import { register } from "/modules/register.js";
 import { createAppTemplateResult } from "/modules/templates.js";
 
 import { interpret } from "https://unpkg.com/xstate/es/interpreter.js";
+import { Machine, actions } from "https://unpkg.com/xstate/es/index.js";
+
 import { DOMMachine } from "/modules/machines/domMachine.js";
 
-const renderDOM = (ctx, { payload }) =>
-  render(
-    createAppTemplateResult(html, payload),
-    document.getElementById("app")
-  );
+const { assign } = actions;
 
-const registerElements = () => register();
+const storeMachine = Machine(
+  {
+    id: "store",
+    initial: "ready",
+    states: {
+      ready: {
+        on: {
+          INPUT_CHANGE: {
+            actions: ["update"]
+          }
+        }
+      }
+    }
+  },
+  {
+    actions: {
+      update: assign((ctx, { payload }) => {
+        return {
+          name: payload
+        };
+      })
+    }
+  }
+).withContext(window.initialState.data);
 
-export const DOMService = interpret(
+const storeService = interpret(storeMachine);
+
+const DOMMachineService = interpret(
   DOMMachine.withConfig({
     actions: {
-      renderDOM,
-      registerElements
+      renderDOM: (ctx, { payload }) => {
+        render(
+          createAppTemplateResult(html, payload),
+          document.getElementById("app")
+        );
+      },
+      registerElements: () => {
+        register(storeService.send);
+      }
     }
   })
 );
+DOMMachineService.start();
 
-// DOMService.onTransition(nextState => {
-//   console.log(nextState.value);
-// });
-
-DOMService.start();
-
-DOMService.send({
-  type: "RENDER",
-  payload: window.initialState
+storeService.onTransition(({ value, context }) => {
+  DOMMachineService.send({
+    type: "RENDER",
+    payload: context
+  });
 });
 
-setTimeout(() => {
-  DOMService.send({
-    type: "RENDER",
-    payload: {
-      data: {
-        name: "X machina",
-        content: "super cooler lorem psum"
-      },
-      path: "/"
-    }
-  });
-}, 2000);
-
-// DOMService.stop();
+storeService.start();
