@@ -6,7 +6,7 @@ const meta = () => `
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="modules/styles.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
 `;
 
 // const scripts = serializedData => `
@@ -20,7 +20,7 @@ const meta = () => `
 
 const scripts = serializedData => `
     <script>window.initialState = ${serializedData}</script>
-    <script type="module" src="/modules/init.js"></script>
+    <script type="module" src="bundle.js"></script>
 `;
 
 const head = (meta, scripts) => `

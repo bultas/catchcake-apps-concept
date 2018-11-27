@@ -1,11 +1,11 @@
-import { html, render } from "/node_modules/lit-html/lit-html.js";
-import { register } from "/modules/register.js";
-import { createAppTemplateResult } from "/modules/templates.js";
+import { html, render } from "lit-html";
+import { register } from "./register.js";
+import { createAppTemplateResult } from "./templates.js";
 
-import { interpret } from "https://unpkg.com/xstate/es/interpreter.js";
-import { Machine, actions } from "https://unpkg.com/xstate/es/index.js";
+import { interpret } from "xstate/es/interpreter";
+import { Machine, actions } from "xstate/es/";
 
-import { DOMMachine } from "/modules/machines/domMachine.js";
+import { DOMMachine } from "./machines/domMachine.js";
 
 const { assign } = actions;
 

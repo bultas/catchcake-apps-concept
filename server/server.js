@@ -4,7 +4,7 @@ const app = express();
 
 // TODO use package.json main to load index, but we have problem with serverStatic..
 const appPath = "../apps/litHTML";
-app.use(express.static(appPath));
+app.use(express.static(`${appPath}/static`));
 
 app.get("*", async (req, res, next) => {
   const rendererPath = "../renderer/renderer.js";

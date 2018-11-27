@@ -1,6 +1,6 @@
-import { CCElement } from "/modules/elements/cc-button.js";
-import { createCCInput } from "/modules/elements/cc-input.js";
-import { MyElement } from "/modules/elements/my-element.js";
+import { CCElement } from "./elements/cc-button.js";
+import { createCCInput } from "./elements/cc-input.js";
+import { MyElement } from "./elements/my-element.js";
 
 export const register = send => {
   const CCInput = createCCInput(send);

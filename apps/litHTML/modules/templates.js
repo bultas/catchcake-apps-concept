@@ -27,6 +27,8 @@ export const createAppTemplateResult = (html, data) => html`
 
   <cc-input is="input" value="${data.name}"></cc-input>
 
+  <input is="cc-input" value="${data.name}" />
+
   <cc-button value="SAVE_BUTTON_CLICKED">Click Me</cc-button>
 
   <my-element></my-element>

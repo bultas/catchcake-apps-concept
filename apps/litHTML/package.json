@@ -1,8 +1,13 @@
 {
   "main": "src/index.js",
   "dependencies": {
+    "@polymer/lit-element": "^0.6.3",
     "@popeindustries/lit-html-server": "^0.13.0",
     "lit-html": "^0.13.0",
     "xstate": "^4.1.2"
+  },
+  "devDependencies": {
+    "rollup": "^0.67.3",
+    "rollup-plugin-node-resolve": "^3.4.0"
   }
 }
