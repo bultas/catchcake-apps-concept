@@ -24,6 +24,10 @@ export const createCCInput = send =>
       this.input.setAttribute("value", this.getAttribute("value"));
 
       this.input.addEventListener("blur", e => {
+        this.dispatchEvent(
+          new CustomEvent("INPUT_CHANGE", { detail: e.target.value })
+        );
+
         send({
           type: "INPUT_CHANGE",
           payload: e.target.value

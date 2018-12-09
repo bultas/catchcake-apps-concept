@@ -15,7 +15,7 @@ export const DOMMachine = Machine({
     // wait for full DOM hydratation to allow CSS custom-elements transitions etc.
     hydrating: {
       after: {
-        100: "hydrated"
+        1: "hydrated"
       }
     },
     hydrated: {

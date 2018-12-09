@@ -1,14 +1,26 @@
-// import {
-//   LitElement,
-//   html
-// } from "/node_modules/@polymer/lit-element/lit-element.js";
+import { LitElement, html } from "@polymer/lit-element";
 
-// export const render = html => html`
-//   <my-element></my-element>
-// `;
-
-export class MyElement extends HTMLElement {
-  constructor() {
-    super();
+export class MyElement extends LitElement {
+  static get properties() {
+    return {
+      content: { type: String }
+    };
+  }
+  // constructor() {
+  //   super();
+  // }
+  render() {
+    const { content } = this;
+    return html`
+      <h2>${content}</h2>
+      <input
+        @blur="${
+          e => {
+            console.log(e);
+          }
+        }"
+        value="${content}"
+      />
+    `;
   }
 }

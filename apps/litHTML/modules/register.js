@@ -8,4 +8,8 @@ export const register = send => {
   window.customElements.define("cc-button", CCElement);
   window.customElements.define("cc-input", CCInput);
   window.customElements.define("my-element", MyElement);
+
+  document
+    .querySelector("cc-input")
+    .addEventListener("INPUT_CHANGE", e => console.log(e.detail));
 };

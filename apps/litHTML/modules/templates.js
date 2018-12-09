@@ -19,17 +19,21 @@ const createLogEvent = type => e => console.log(type, e);
 //     })}
 //   `;
 
-export const createAppTemplateResult = (html, data) => html`
-  <h1>${data.name}</h1>
-  <p>${data.content}</p>
+export const createAppTemplateResult = (html, { name, content }) => html`
+  <h1>${name}</h1>
+  <p>${content}</p>
 
-  <cc-input is="input" value="${data.name}"></cc-input>
+  <div>
+    <cc-input is="input" value="${name}"></cc-input>
 
-  <cc-input is="input" value="${data.name}"></cc-input>
+    <cc-input is="input" value="${name}"></cc-input>
 
-  <input is="cc-input" value="${data.name}" />
+    <input is="cc-input" value="${name}" />
 
-  <cc-button value="SAVE_BUTTON_CLICKED">Click Me</cc-button>
+    <cc-button value="SAVE_BUTTON_CLICKED">Click Me</cc-button>
+  </div>
 
-  <my-element></my-element>
+  <div>
+    <my-element content="${name}"> <div>SEO</div> </my-element>
+  </div>
 `;

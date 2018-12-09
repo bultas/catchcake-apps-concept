@@ -45,9 +45,9 @@ const htmlWrapper = (head, body) => `
 `;
 
 module.exports = async dataObject => {
-  const appTemplateResult = createAppTemplateResult(html, dataObject);
+  const appTemplateResult = createAppTemplateResult(html, dataObject.data);
   const headHTML = head(meta(), scripts(JSON.stringify(dataObject)));
-  const htmlMarkup = htmlWrapper(headHTML, body("appTemplateResult"));
+  const htmlMarkup = htmlWrapper(headHTML, body(appTemplateResult));
 
   return renderToString(htmlMarkup);
 };
