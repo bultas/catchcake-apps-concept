@@ -44,7 +44,7 @@ const htmlWrapper = (head, body) => `
     </html>
 `;
 
-module.exports = async dataObject => {
+export default async dataObject => {
   const appTemplateResult = createAppTemplateResult(html, dataObject.data);
   const headHTML = head(meta(), scripts(JSON.stringify(dataObject)));
   const htmlMarkup = htmlWrapper(headHTML, body(appTemplateResult));
